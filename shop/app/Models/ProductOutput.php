@@ -4,16 +4,16 @@ namespace Thalfm\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use Thalfm\Events\ProductInputWasCreated;
+use Thalfm\Events\ProductOutputWasCreated;
 
-class ProductInput extends Model
+class ProductOutput extends Model
 {
     use Notifiable;
 
     protected $fillable = ['quantity', 'product_id'];
 
     protected $dispatchesEvents = [
-        'created' => ProductInputWasCreated::class
+        'created' => ProductOutputWasCreated::class
     ];
 
     public function product()

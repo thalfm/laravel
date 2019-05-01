@@ -6,6 +6,10 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Thalfm\Events\ProductInputWasCreated;
+use Thalfm\Events\ProductOutputWasCreated;
+use Thalfm\Listeners\AddProductStock;
+use Thalfm\Listeners\SubProductStock;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,6 +22,12 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        ProductInputWasCreated::class => [
+            AddProductStock::class
+        ],
+        ProductOutputWasCreated::class => [
+            SubProductStock::class
+        ]
     ];
 
     /**
