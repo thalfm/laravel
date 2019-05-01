@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\Thalfm\Models\Category whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Thalfm\Models\Category whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Thalfm\Models\Product[] $products
  */
 class Category extends Model
 {

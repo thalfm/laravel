@@ -31,6 +31,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\Thalfm\Models\Product whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Thalfm\Models\Product whereStock($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Thalfm\Models\Product whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Thalfm\Models\Category[] $categories
  */
 class Product extends Model
 {
