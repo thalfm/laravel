@@ -16,7 +16,7 @@ class CreateProductInputsTable extends Migration
         Schema::dropIfExists('product_inputs');
         Schema::create('product_inputs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id');
+            $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
             $table->integer('quantity')->unsigned()->default(0);
             $table->timestamps();
