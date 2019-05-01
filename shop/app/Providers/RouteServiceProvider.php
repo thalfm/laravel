@@ -3,13 +3,17 @@
 namespace Thalfm\Providers;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Thalfm\Common\OnlyTrashed;
 use Thalfm\Models\Category;
 use Thalfm\Models\Product;
+use Thalfm\User;
 
 class RouteServiceProvider extends ServiceProvider
 {
+    use OnlyTrashed;
     /**
      * This namespace is applied to your controller routes.
      *
@@ -40,6 +44,14 @@ class RouteServiceProvider extends ServiceProvider
             /** @var Collection $collection */
             $collection = Product::whereId((int)$value)->orWhere('slug', $value)->get();
             return $collection->first();
+        });
+
+        Route::bind('user', function ($value){
+            $query = User::query();
+            $request = app(Request::class);
+            $query = $this->onlyTrashedIfRequest($request,$query);
+
+            return $query->find($value);
         });
     }
 
