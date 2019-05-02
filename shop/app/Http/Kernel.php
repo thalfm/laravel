@@ -19,6 +19,7 @@ class Kernel extends HttpKernel
         \Thalfm\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \Thalfm\Http\Middleware\TrustProxies::class,
+        \Thalfm\Http\Middleware\CorsMiddleware::class
     ];
 
     /**
@@ -60,6 +61,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'jwt.refresh' => \Tymon\JWTAuth\Http\Middleware\RefreshToken::class
     ];
 
     /**
