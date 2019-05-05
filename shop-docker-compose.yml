@@ -2,7 +2,7 @@ version: "3"
 services:
   php:
     container_name: php
-    image: thalfm/php:7.1
+    image: thalfm/php7
     build:
       dockerfile: ./docker/php
       context: .

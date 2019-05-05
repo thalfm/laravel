@@ -1,0 +1,16 @@
+<form (submit)="submit()">
+  <modal>
+    <h3 modal-title>Nova categoria</h3>
+    <div modal-body>
+
+      <div class="form-group">
+        <label for="category-name">Nome</label>
+        <input type="text" class="form-control" id="category-name" [(ngModel)]="category.name" name="name">
+      </div>
+
+    </div>
+    <div modal-footer>
+      <button type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+  </modal>
+</form>
