@@ -10,6 +10,8 @@ import {CategoryListComponent} from './components/pages/category/category-list/c
 import { AlertErrorComponent } from './components/bootstrap/alert-error/alert-error.component';
 import { ModalComponent } from './components/bootstrap/modal/modal.component';
 import { CategoryNewModalComponent } from './components/pages/category/category-new-modal/category-new-modal.component';
+import { CategoryEditModelComponent } from './components/pages/category/category-edit-model/category-edit-model.component';
+import { CategoryDeleteModalComponent } from './components/pages/category/category-delete-modal/category-delete-modal.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { CategoryNewModalComponent } from './components/pages/category/category-
         CategoryListComponent,
         AlertErrorComponent,
         ModalComponent,
-        CategoryNewModalComponent
+        CategoryNewModalComponent,
+        CategoryEditModelComponent,
+        CategoryDeleteModalComponent
     ],
     imports: [
         BrowserModule,

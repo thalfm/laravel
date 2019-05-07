@@ -1,5 +1,5 @@
 ARG PHP_VERSION=7.1.19-fpm-alpine
-ARG XDEBUG_VERSION=2.5.5
+ARG XDEBUG_VERSION=2.7.2
 
 FROM php:${PHP_VERSION}
 
@@ -22,9 +22,16 @@ RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /usr/local/bin/composer
 
-## Instalando o XDebug
-#RUN pecl install xdebug-${XDEBUG_VERSION}
-#RUN docker-php-ext-enable xdebug
+# Instalando o XDebug
+RUN apk add --no-cache $PHPIZE_DEPS \
+    && pecl install xdebug-2.5.0 \
+#    && echo "zend_extension=/usr/lib/php/20160303/xdebug.so" > /etc/php/7.1/mods-available/xdebug.ini \
+#    && echo "xdebug.remote_enable=on" >> /etc/php/7.1/mods-available/xdebug.ini \
+#    && echo "xdebug.remote_handler=dbgp" >> /etc/php/7.1/mods-available/xdebug.ini \
+#    && echo "xdebug.remote_port=9000" >> /etc/php/7.1/mods-available/xdebug.ini \
+#    && echo "xdebug.remote_autostart=on" >> /etc/php/7.1/mods-available/xdebug.ini \
+#    && echo "xdebug.remote_connect_back=0" >> /etc/php/7.1/mods-available/xdebug.ini \
+#    && echo "xdebug.idekey=docker" >> /etc/php/7.1/mods-available/xdebug.ini
 #
 ## Configurando o XDebug
 #RUN echo "xdebug.remote_enable = 1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini

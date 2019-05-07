@@ -20,15 +20,34 @@
             <td>{{category.id}}</td>
             <td>{{category.name}}</td>
             <td>
-                <i [class]='category.active ? "fas fa-check" : "" '></i>
+                <i [class]='category.active ? "fas fa-check" : "fas fa-times" '></i>
             </td>
             <td>{{category.created_at | date:"dd/mm/yyyy"}}</td>
-            <td>Editar|Excluir</td>
+            <td>
+                <a href="javascript:void(0)" (click)="showModalEdit(category.id)">
+                    <i class="fas fa-edit"></i>
+                </a> |
+                <a href="javascript:void(0)" (click)="showModalDelete(category.id)">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
         </tr>
         </tbody>
     </table>
 </div>
 <category-new-modal
-(onSuccess)="onSuccesInsert()"
-(onError)="onErrorInsert($event)"
+        (onSuccess)="onSuccesInsert()"
+        (onError)="onErrorInsert($event)"
 ></category-new-modal>
+
+<category-edit-model
+        [categoryId]="categoryId"
+        (onSuccess)="onSuccesEdit()"
+        (onError)="onErrorEdit($event)"
+></category-edit-model>
+
+<category-delete-modal
+        [categoryId]="categoryId"
+        (onSuccess)="onSuccesDelete()"
+        (onError)="onErrorDelete($event)"
+></category-delete-modal>

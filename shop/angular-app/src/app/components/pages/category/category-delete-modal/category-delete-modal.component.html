@@ -1,0 +1,12 @@
+<form (submit)="submit()">
+  <modal>
+    <h3 modal-title>Exclusão de categoria</h3>
+    <div modal-body>
+      Deseja realmente excluir a categoria {{category?.name}}
+    </div>
+    <div modal-footer>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      <button type="button" class="btn btn-danger" (click)="destroy()">Exluir</button>
+    </div>
+  </modal>
+</form>

@@ -16,7 +16,8 @@ export class CategoryNewModalComponent implements OnInit {
     @Output() onError: EventEmitter<HttpErrorResponse> = new EventEmitter<HttpErrorResponse>()
 
     category = {
-        name: ''
+        name: '',
+        active: true
     };
 
     constructor(private http: HttpClient) {
