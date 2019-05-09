@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {ModalComponent} from "../../../bootstrap/modal/modal.component";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpErrorResponse} from "@angular/common/http";
 import {Category} from "../../../../modals";
 import {CategoryHttpService} from "../../../../services/http/category-http.service";
 
@@ -28,6 +28,10 @@ export class CategoryEditModelComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.category = {
+            name: '',
+            active: true
+        };
     }
 
     @Input()

@@ -1,11 +1,12 @@
-import {Component, OnInit, ViewChild, forwardRef} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {CategoryNewModalComponent} from "../category-new-modal/category-new-modal.component";
 import {CategoryEditModelComponent} from "../category-edit-model/category-edit-model.component";
 import {CategoryDeleteModalComponent} from "../category-delete-modal/category-delete-modal.component";
 import {CategoryHttpService} from "../../../../services/http/category-http.service";
 import {Category} from "../../../../modals";
-import {NotifyMessageService} from "../../../../services/notify/notify-message.service";
+import {CategoryListInsertService} from "./category-list-insert.service";
+import {CategoryListEditService} from "./category-list-edit-service";
+import {CategoryListDeleteService} from "./category-list-delete.service";
 
 @Component({
     selector: 'app-category-list',
@@ -17,7 +18,7 @@ export class CategoryListComponent implements OnInit {
     categories: Array<Category> = [];
 
     @ViewChild(CategoryNewModalComponent)
-    categoryNewmodel: CategoryNewModalComponent;
+    categoryNewModel: CategoryNewModalComponent;
     @ViewChild(CategoryEditModelComponent)
     categoryEditModel: CategoryEditModelComponent;
     @ViewChild(CategoryDeleteModalComponent)
@@ -25,7 +26,21 @@ export class CategoryListComponent implements OnInit {
 
     categoryId: number;
 
-    constructor(private categoryHttp: CategoryHttpService, private notifyMessage: NotifyMessageService) {
+    pagination = {
+        page: 1,
+        totalItems: 0,
+        itemsPerPage: 15
+    };
+
+    constructor(
+        private categoryHttp: CategoryHttpService,
+        public categoryListInsertService: CategoryListInsertService,
+        public categoryListEditService: CategoryListEditService,
+        public categoryListDeleteService: CategoryListDeleteService
+    ) {
+        this.categoryListInsertService.categoryListComponent = this;
+        this.categoryListEditService.categoryListComponent = this;
+        this.categoryListDeleteService.categoryListComponent = this;
     }
 
     ngOnInit() {
@@ -33,51 +48,16 @@ export class CategoryListComponent implements OnInit {
     }
 
     getCategories() {
-        this.categoryHttp.list()
+        this.categoryHttp.list(this.pagination.page)
             .subscribe(response => {
-                this.categories = response.data
+                this.categories = response.data;
+                this.pagination.totalItems = response.meta.total;
+                this.pagination.itemsPerPage = response.meta.per_page;
             })
     }
 
-
-    showmodalInsert() {
-        this.categoryNewmodel.showModal();
-    }
-
-    onSuccesInsert() {
-        this.notifyMessage.success('Categoria criada com sucesso.');
+    pageChanged(page: number) {
+        this.pagination.page = page;
         this.getCategories();
-    }
-
-    onErrorInsert($event: HttpErrorResponse) {
-        console.log($event);
-    }
-
-    showModalEdit(id: number) {
-        this.categoryId = id;
-        this.categoryEditModel.showModal();
-    }
-
-    onSuccesEdit() {
-        this.getCategories();
-    }
-
-    onErrorEdit($event: HttpErrorResponse) {
-        console.log($event);
-    }
-
-    showModalDelete(id: number) {
-        this.categoryId = id;
-        this.categoryDeleteModel.showModal();
-    }
-
-    onSuccesDelete() {
-        this.getCategories();
-    }
-
-    onErrorDelete($event: HttpErrorResponse) {
-        console.log($event);
-        this.notifyMessage.error(`Ocorreu um erro ao tentar excluir uma categooria.
-        Verifique se esta categoria não esta relacionada com um produto.`);
     }
 }

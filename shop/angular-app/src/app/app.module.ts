@@ -12,6 +12,7 @@ import { ModalComponent } from './components/bootstrap/modal/modal.component';
 import { CategoryNewModalComponent } from './components/pages/category/category-new-modal/category-new-modal.component';
 import { CategoryEditModelComponent } from './components/pages/category/category-edit-model/category-edit-model.component';
 import { CategoryDeleteModalComponent } from './components/pages/category/category-delete-modal/category-delete-modal.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { CategoryDeleteModalComponent } from './components/pages/category/catego
         BrowserModule,
         AppRoutingModule,
         FormsModule,
-        HttpClientModule
+        HttpClientModule,
+        NgxPaginationModule
     ],
     providers: [],
     bootstrap: [AppComponent]

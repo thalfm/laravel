@@ -4,7 +4,7 @@
         <thead>
         <tr>
             <td colspan="5">
-                <button class="btn btn-primary" (click)="showmodalInsert()">Nova categoria</button>
+                <button class="btn btn-primary" (click)="categoryListInsertService.showModalInsert()">Nova categoria</button>
             </td>
         </tr>
         <tr>
@@ -16,7 +16,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let category of categories">
+        <tr *ngFor="let category of categories | paginate: {itemsPerPage:pagination.itemsPerPage, currentPage: pagination.page, totalItems: pagination.totalItems}">
             <td>{{category.id}}</td>
             <td>{{category.name}}</td>
             <td>
@@ -24,30 +24,35 @@
             </td>
             <td>{{category.created_at | date:"dd/mm/yyyy"}}</td>
             <td>
-                <a href="javascript:void(0)" (click)="showModalEdit(category.id)">
+                <a href="javascript:void(0)" (click)="categoryListEditService.showModalEdit(category.id)">
                     <i class="fas fa-edit"></i>
                 </a> |
-                <a href="javascript:void(0)" (click)="showModalDelete(category.id)">
+                <a href="javascript:void(0)" (click)="categoryListDeleteService.showModalDelete(category.id)">
                     <i class="fas fa-trash-alt"></i>
                 </a>
             </td>
         </tr>
         </tbody>
     </table>
+    <pagination-controls
+            (pageChange)="pageChanged($event)"
+            previousLabel="Anterior"
+            nextLabel="Próximo"
+    ></pagination-controls>
 </div>
 <category-new-modal
-        (onSuccess)="onSuccesInsert()"
-        (onError)="onErrorInsert($event)"
+        (onSuccess)="categoryListInsertService.onSuccesInsert()"
+        (onError)="categoryListInsertService.onErrorInsert($event)"
 ></category-new-modal>
 
 <category-edit-model
         [categoryId]="categoryId"
-        (onSuccess)="onSuccesEdit()"
-        (onError)="onErrorEdit($event)"
+        (onSuccess)="categoryListEditService.onSuccesEdit()"
+        (onError)="categoryListEditService.onErrorEdit($event)"
 ></category-edit-model>
 
 <category-delete-modal
         [categoryId]="categoryId"
-        (onSuccess)="onSuccesDelete()"
-        (onError)="onErrorDelete($event)"
+        (onSuccess)="categoryListDeleteService.onSuccesDelete()"
+        (onError)="categoryListDeleteService.onErrorDelete($event)"
 ></category-delete-modal>
