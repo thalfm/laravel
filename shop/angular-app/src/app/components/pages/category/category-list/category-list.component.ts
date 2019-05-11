@@ -9,7 +9,7 @@ import {CategoryListEditService} from "./category-list-edit-service";
 import {CategoryListDeleteService} from "./category-list-delete.service";
 
 @Component({
-    selector: 'app-category-list',
+    selector: 'category-list',
     templateUrl: './category-list.component.html',
     styleUrls: ['./category-list.component.css']
 })
