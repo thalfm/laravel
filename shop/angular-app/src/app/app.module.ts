@@ -17,6 +17,7 @@ import {ProductNewModalComponent} from './components/pages/product/product-new-m
 import {ProductEditModelComponent} from './components/pages/product/product-edit-model/product-edit-model.component';
 import {ProductDeleteModalComponent} from './components/pages/product/product-delete-modal/product-delete-modal.component';
 import {NgxPaginationModule} from "ngx-pagination";
+import {NumberBrPipe} from './pipes/format/number-br.pipe';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {NgxPaginationModule} from "ngx-pagination";
         ProductListComponent,
         ProductNewModalComponent,
         ProductEditModelComponent,
-        ProductDeleteModalComponent
+        ProductDeleteModalComponent,
+        NumberBrPipe
     ],
     imports: [
         BrowserModule,

@@ -9,7 +9,8 @@
         </tr>
         <tr>
             <th style="width: 5%">ID</th>
-            <th style="width: 65%">Nome</th>
+            <th style="width: 50%">Nome</th>
+            <th style="width: 15%">Preço</th>
             <th style="width: 10%">Ativa?</th>
             <th style="width: 10%">Criado em</th>
             <th style="width: 10%">Ações</th>
@@ -19,6 +20,7 @@
         <tr *ngFor="let product of products | paginate: {itemsPerPage:pagination.itemsPerPage, currentPage: pagination.page, totalItems: pagination.totalItems}">
             <td>{{product.id}}</td>
             <td>{{product.name}}</td>
+            <td>{{product.price | numberBr}}</td>
             <td>
                 <i [class]='product.active ? "fas fa-check" : "fas fa-times" '></i>
             </td>
