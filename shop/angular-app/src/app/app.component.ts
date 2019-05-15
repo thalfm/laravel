@@ -9,7 +9,7 @@ export class AppComponent implements OnInit{
   title = 'Shop';
 
   ngOnInit(): void {
-    pace.onStart({
+    pace.start({
       document: false,
       elements: false,
     });

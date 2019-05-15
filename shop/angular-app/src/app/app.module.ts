@@ -18,6 +18,8 @@ import {ProductEditModelComponent} from './components/pages/product/product-edit
 import {ProductDeleteModalComponent} from './components/pages/product/product-delete-modal/product-delete-modal.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import {NumberBrPipe} from './pipes/format/number-br.pipe';
+import { ProductCategoryListComponent } from './components/pages/product-category/product-category-list/product-category-list.component';
+import { ProductCategoryNewComponent } from './components/pages/product-category/product-category-new/product-category-new.component';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import {NumberBrPipe} from './pipes/format/number-br.pipe';
         ProductNewModalComponent,
         ProductEditModelComponent,
         ProductDeleteModalComponent,
-        NumberBrPipe
+        NumberBrPipe,
+        ProductCategoryListComponent,
+        ProductCategoryNewComponent
     ],
     imports: [
         BrowserModule,

@@ -3,11 +3,12 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Category} from "../../modals";
 import {map} from "rxjs/operators";
+import {BaseHttpService} from "./base-http.service";
 
 @Injectable({
     providedIn: 'root'
 })
-export class CategoryHttpService {
+export class CategoryHttpService implements BaseHttpService<Category>{
 
     private token = window.localStorage.getItem('token');
     private base_path = 'http://localhost:8010/api/categories';

@@ -15,3 +15,8 @@ export interface Product {
     active: boolean
     readonly created_at?: string;
 }
+
+export interface ProductCategory {
+    product: Product,
+    categories: Category[]
+}
